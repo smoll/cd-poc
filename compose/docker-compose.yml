@@ -1,0 +1,18 @@
+redis:
+  labels:
+    io.rancher.container.pull_image: always
+  image: redis
+python-microservice:
+  labels:
+    io.rancher.container.pull_image: always
+  image: smoll/python-microservice:master
+  links:
+  - redis:redis
+pymicroserviceLB:
+  ports:
+  - '80'
+  labels:
+    io.rancher.loadbalancer.target.python-microservice: pyms.mycompany.tld
+  image: rancher/load-balancer-service
+  links:
+  - python-microservice:python-microservice
