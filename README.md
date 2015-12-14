@@ -69,3 +69,7 @@ make server host=ec2
 
 make agent host=ec2
 ```
+
+## Issues
+
+* Affecting `make agent` idempotence: [Ansible docker module fails when re-pulling agent container](https://github.com/ansible/ansible-modules-core/issues/2257)

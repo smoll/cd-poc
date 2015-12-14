@@ -12,7 +12,8 @@
       name: rancheragent
       image: rancher/agent:v0.7.9
       privileged: True
-      state: reloaded
+      # Change to 'reloaded' after this is fixed: https://github.com/ansible/ansible-modules-core/issues/2257
+      state: started
       restart_policy: always
       volumes:
       - /var/run/docker.sock:/var/run/docker.sock

@@ -12,4 +12,7 @@
   - name: Install python-pip
     apt: name=python-pip state=present
   - name: Install docker-py
-    pip: name=docker-py version=1.6.0
+    pip:
+      name=docker-py
+      state=present
+      version=1.6.0
