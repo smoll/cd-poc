@@ -40,14 +40,39 @@ to bring up a Vagrant-based Rancher cluster to play around with locally.
     export RANCHER_SECRET_KEY=L3MwQvqDqCeFcop5Dtx5wDbDwMk7tauN6iHzrid3 # replace this too
 
     cd myapp
-    rancher-compose logs # -p myapp
+    rancher-compose --verbose logs # -p myapp
     ```
 
 0. Bring up all the services
 
     ```bash
-    rancher-compose up -d
+    rancher-compose --verbose up -d
     rancher-compose logs
+    ```
+
+0. Add DNS entry for app load balancing to work ([More details on Rancher Load Balancer](http://rancher.com/virtual-host-routing-using-rancher-load-balancer/)). For testing purposes, I just add an entry to my `/etc/hosts` file:
+
+    ```
+    # temp: testing rancher on vagrant
+    192.168.50.105 pyms.mycompany.tld
+    ```
+
+    Note that I entered `.105` above; this is because by chance (I think), my `LB` container was deployed to host `rancher-5`. We can make this more deterministic by using host labeling and then ensuring that `LB` is deployed to that specific host.
+
+0. Sanity test the app
+
+    ```
+    $ curl http://pyms.mycompany.tld
+    Hello World from 1076cf82934d! I have been seen 6 times.
+    $ curl http://pyms.mycompany.tld
+    Hello World from f7780c0a0af1! I have been seen 7 times.
+    ```
+
+0. If any adjustments need to be made to the Compose YMLs, you can recreate the stack from scratch with:
+
+    ```bash
+    rancher-compose --verbose rm -f
+    rancher-compose --verbose up
     ```
 
 #### Slow start

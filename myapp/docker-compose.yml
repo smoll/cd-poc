@@ -12,7 +12,7 @@ pymicroserviceLB:
   ports:
   - '80'
   labels:
-    io.rancher.loadbalancer.target.python-microservice: pyms.mycompany.tld
+    io.rancher.loadbalancer.target.python-microservice: pyms.mycompany.tld=5000
   image: rancher/load-balancer-service
   links:
   - python-microservice:python-microservice
