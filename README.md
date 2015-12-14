@@ -50,7 +50,7 @@ to bring up a Vagrant-based Rancher cluster to play around with locally.
     rancher-compose logs
     ```
 
-0. Add DNS entry for app load balancing to work ([More details on Rancher Load Balancer](http://rancher.com/virtual-host-routing-using-rancher-load-balancer/)). For testing purposes, I just add an entry to my `/etc/hosts` file:
+0. Add DNS entry for app load balancing to work. For testing purposes, I just add an entry to my `/etc/hosts` file:
 
     ```
     # temp: testing rancher on vagrant
@@ -74,6 +74,13 @@ to bring up a Vagrant-based Rancher cluster to play around with locally.
     rancher-compose --verbose rm -f
     rancher-compose --verbose up
     ```
+
+#### References
+
+For further reading:
+
+0. [virtual host routing using RancherLB](http://rancher.com/virtual-host-routing-using-rancher-load-balancer/)
+0. [load balancing healthchecks](http://rancher.com/load-balancing-support-for-docker-in-rancher/)
 
 #### Slow start
 
@@ -115,3 +122,19 @@ See [failure testing](./docs/FAILURE-TESTING.md) for examples of various scenari
 ## Issues
 
 * Affecting `make agent` idempotence: [Ansible docker module fails when re-pulling agent container](https://github.com/ansible/ansible-modules-core/issues/2257)
+
+* Debugging Ansible play failures: if you get a failure that looks like:
+
+    ```
+    TASK: [Ensure rancher/agent container is running] *****************************
+    failed: [rancher-2] => {"changed": false, "failed": true}
+    msg: ConnectionError(ProtocolError('Connection aborted.', error(2, 'No such file or directory')),)
+    ```
+
+    One way to debug this would be to add more verbose logging to see the actual SSH commands being executed, and limit the play to only run on the host that failed, so at the top of the `Makefile`, so before rerunning the play, modify the variable to something like:
+
+    ```
+    ansible_ssh_flags = --private-key=$(ssh_key) -i $(hosts) -vvvv --limit @/Users/smollah/rancher_agent.retry
+    ```
+
+    In this specific case, it looks like the reason it failed is because the Docker daemon is not running. I will add that check as a prerequisite to any Docker-based tasks.
