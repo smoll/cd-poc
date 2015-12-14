@@ -38,15 +38,14 @@ to bring up a Vagrant-based Rancher cluster to play around with locally.
     export RANCHER_URL=http://192.168.50.101:8080/ # ip of rancher server, hardcoded in Vagrantfile
     export RANCHER_ACCESS_KEY=946B8B68D27D27A14FBB # replace with real key, generated through the UI
     export RANCHER_SECRET_KEY=L3MwQvqDqCeFcop5Dtx5wDbDwMk7tauN6iHzrid3 # replace this too
-
-    cd myapp
-    rancher-compose --verbose logs # -p myapp
     ```
 
 0. Bring up all the services
 
     ```bash
-    rancher-compose --verbose up -d
+    cd stacks/myapp
+
+    rancher-compose --verbose up -d # "-p myapp" isn't necessary since it creates a stack with the basedir name by default
     rancher-compose logs
     ```
 
