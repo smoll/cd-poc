@@ -28,14 +28,14 @@ make server
 make agent
 ```
 
-to bring up a Vagrant-based Rancher cluster locally to play around with locally.
+to bring up a Vagrant-based Rancher cluster to play around with locally.
 
 #### Quickstart
 
 0. Connect to the stack via Rancher Compose CLI
 
     ```bash
-    export RANCHER_URL=http://192.168.50.101:8080/
+    export RANCHER_URL=http://192.168.50.101:8080/ # ip of rancher server, hardcoded in Vagrantfile
     export RANCHER_ACCESS_KEY=A9EC9CAD51B38A9504B5 # replace with real key, generated through the UI
     export RANCHER_SECRET_KEY=fzE3g4zJN2iKbhgajCKfEK1mD6kPb7qEHevJwSfd # replace this too
 
