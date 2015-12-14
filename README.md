@@ -11,14 +11,15 @@ Will eventually contain a full example of continuous deployment to multiple Ranc
 
 At any time, to suspend all VMs and free up memory do
 
-```
+```bash
 vagrant halt
 ```
 
-[joshuacox/ansibleplaybook-rancher](https://github.com/joshuacox/ansibleplaybook-rancher), has been git submoduled (`git submodule add git@github.com:joshuacox/ansibleplaybook-rancher.git provision`), so you can do
+See playbooks and other Ansible-related files in [`provision`](./provision).
 
 ```bash
 vagrant up
+make docker
 make server
 
 # log into the UI, attempt to add a custom host, grab the extra long URL, e.g.
@@ -33,7 +34,7 @@ to bring up a Vagrant-based Rancher cluster locally to play around with locally.
 
 0. Connect to the stack via Rancher Compose CLI
 
-    ```
+    ```bash
     export RANCHER_URL=http://192.168.50.101:8080/
     export RANCHER_ACCESS_KEY=A9EC9CAD51B38A9504B5 # replace with real key, generated through the UI
     export RANCHER_SECRET_KEY=fzE3g4zJN2iKbhgajCKfEK1mD6kPb7qEHevJwSfd # replace this too
@@ -44,8 +45,27 @@ to bring up a Vagrant-based Rancher cluster locally to play around with locally.
 
 0. Bring up all the services
 
-    ```
+    ```bash
     rancher-compose -p myapp up
     ```
 
+#### Slow start
+
 See [UI Steps](./UI-STEPS.md) for step-by-step instructions for how the Compose YMLs were generated.
+
+### EC2
+
+#### TODO:
+
+* Create targets/flag for basic EC2 bootstrap.
+* Create targets/flag for [HA Rancher Server](http://docs.rancher.com/rancher/installing-rancher/installing-server/multi-nodes/) EC2 bootstrap.
+
+Bootstrap everything using same Makefile
+
+```bash
+make server host=ec2
+
+# log into the UI, attempt to add a custom host, grab the extra long URL
+
+make agent host=ec2
+```

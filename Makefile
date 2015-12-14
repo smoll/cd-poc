@@ -13,8 +13,9 @@ help:
 deps:
 	cd $(PLAYBOOK_PATH); ansible-galaxy install -r requirements.yml
 
-server: docker haveged serverplay
+server: haveged serverplay
 
+# Install Docker platform on all hosts in inventory file
 docker:
 	cd $(PLAYBOOK_PATH); ansible-playbook $(ANSIBLE_SSH_FLAGS) docker_platform.yml
 
