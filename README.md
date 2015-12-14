@@ -12,14 +12,19 @@ Will eventually contain a full example of continuous deployment to multiple Ranc
 At any time, to suspend all VMs and free up memory do
 
 ```
-$ vagrant halt
+vagrant halt
 ```
 
-[rancher/rancher](https://github.com/rancher/rancher), forked with minor adjustments, has been git submoduled (`git submodule add git@github.com:smoll/rancher.git rancher-local-bootstrap`), so you can do
+[joshuacox/ansibleplaybook-rancher](https://github.com/joshuacox/ansibleplaybook-rancher), has been git submoduled (`git submodule add git@github.com:joshuacox/ansibleplaybook-rancher.git provision`), so you can do
 
-```
-$ cd rancher-local-bootstrap
-$ vagrant up
+```bash
+vagrant up
+make server
+
+# log into the UI, attempt to add a custom host, grab the extra long URL, e.g.
+# http://192.168.50.101:8080/v1/scripts/68D59B73D0078EE13D1D:1450069200000:ZRBWdAu7IlVBSUlUtmpVvqnPtMo
+
+make agent
 ```
 
 to bring up a Vagrant-based Rancher cluster locally to play around with locally.
@@ -29,7 +34,7 @@ to bring up a Vagrant-based Rancher cluster locally to play around with locally.
 0. Connect to the stack via Rancher Compose CLI
 
     ```
-    export RANCHER_URL=http://172.19.8.100:8080/
+    export RANCHER_URL=http://192.168.50.101:8080/
     export RANCHER_ACCESS_KEY=A9EC9CAD51B38A9504B5 # replace with real key, generated through the UI
     export RANCHER_SECRET_KEY=fzE3g4zJN2iKbhgajCKfEK1mD6kPb7qEHevJwSfd # replace this too
 

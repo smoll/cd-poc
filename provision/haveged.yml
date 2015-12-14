@@ -1,0 +1,11 @@
+---
+- name: haveged
+  hosts: rancherserver
+  sudo: True
+  tasks:
+  - name: Entropy maker HAVEGED
+    docker:
+      name: havegedocker
+      image: joshuacox/havegedocker:latest
+      privileged: yes
+      state: reloaded

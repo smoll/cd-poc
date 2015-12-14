@@ -1,0 +1,7 @@
+# Local VM data
+.vagrant
+
+# Used by make
+url
+ip
+labels

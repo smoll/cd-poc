@@ -1,3 +1,0 @@
-[submodule "rancher-local-bootstrap"]
-	path = rancher-local-bootstrap
-	url = git@github.com:smoll/rancher.git

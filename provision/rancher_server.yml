@@ -1,0 +1,13 @@
+---
+- name: Rancher Server
+  hosts: rancherserver
+  sudo: True
+  tasks:
+  - name: Ensure rancher/server container is running
+    docker:
+      name: rancherserver
+      image: rancher/server
+      state: reloaded
+      restart_policy: always
+      ports:
+      - "8080:8080"

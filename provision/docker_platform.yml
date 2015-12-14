@@ -1,0 +1,15 @@
+---
+- name: Docker platform (Docker + docker-py for Ansible to manage containers)
+  hosts: all
+  sudo: True
+  roles:
+  - { role: aeriscloud.docker }
+  tasks:
+  - name: Update cache
+    apt: update_cache=yes cache_valid_time=3600
+  - name: Install python
+    apt: name=python state=present
+  - name: Install python-pip
+    apt: name=python-pip state=present
+  - name: Install docker-py
+    pip: name=docker-py version=1.6.0
