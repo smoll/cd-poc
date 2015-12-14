@@ -36,22 +36,23 @@ to bring up a Vagrant-based Rancher cluster to play around with locally.
 
     ```bash
     export RANCHER_URL=http://192.168.50.101:8080/ # ip of rancher server, hardcoded in Vagrantfile
-    export RANCHER_ACCESS_KEY=A9EC9CAD51B38A9504B5 # replace with real key, generated through the UI
-    export RANCHER_SECRET_KEY=fzE3g4zJN2iKbhgajCKfEK1mD6kPb7qEHevJwSfd # replace this too
+    export RANCHER_ACCESS_KEY=946B8B68D27D27A14FBB # replace with real key, generated through the UI
+    export RANCHER_SECRET_KEY=L3MwQvqDqCeFcop5Dtx5wDbDwMk7tauN6iHzrid3 # replace this too
 
-    cd compose
-    rancher-compose -p myapp logs
+    cd myapp
+    rancher-compose logs # -p myapp
     ```
 
 0. Bring up all the services
 
     ```bash
-    rancher-compose -p myapp up
+    rancher-compose up -d
+    rancher-compose logs
     ```
 
 #### Slow start
 
-See [UI Steps](./UI-STEPS.md) for step-by-step instructions for how the Compose YMLs were generated.
+See [slow start](./SLOW-START.md) for step-by-step instructions for how the Compose YMLs were generated.
 
 ### EC2
 
