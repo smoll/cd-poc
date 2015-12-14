@@ -35,6 +35,6 @@ After all 5 Vagrant hosts are up,
             0. Request Host: `pyms.mycompany.tld`
             0. Target Service: `python-microservice`
 
-0. Save the generated `docker-compose.yml` and `rancher-compose.yml` (see the [`myapp`](./myapp) directory).
+0. Save the generated `docker-compose.yml` and `rancher-compose.yml` (see the [`myapp`](../myapp) directory).
 
 0. Press play to launch all services in the stack.

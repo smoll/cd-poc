@@ -77,7 +77,11 @@ to bring up a Vagrant-based Rancher cluster to play around with locally.
 
 #### Slow start
 
-See [slow start](./SLOW-START.md) for step-by-step instructions for how the Compose YMLs were generated.
+See [slow start](./docs/SLOW-START.md) for step-by-step instructions for how the Compose YMLs were generated.
+
+#### Failure testing
+
+See [failure testing](./docs/FAILURE-TESTING.md) for examples of various scenarios to test.
 
 ### EC2
 
