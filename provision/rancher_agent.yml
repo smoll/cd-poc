@@ -7,6 +7,11 @@
      labels_contents: "{{ lookup('file', 'labels') }}"
   sudo: True
   tasks:
+  - name: Make sure Docker is running
+    service: >
+      name=docker
+      state=started
+      enabled=yes
   - name: Ensure rancher/agent container is running
     docker:
       name: rancheragent

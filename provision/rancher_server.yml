@@ -3,6 +3,11 @@
   hosts: rancherserver
   sudo: True
   tasks:
+  - name: Make sure Docker is running
+    service: >
+      name=docker
+      state=started
+      enabled=yes
   - name: Ensure rancher/server container is running
     docker:
       name: rancherserver
