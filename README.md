@@ -57,18 +57,30 @@ See [UI Steps](./UI-STEPS.md) for step-by-step instructions for how the Compose 
 
 #### TODO:
 
-* Create targets/flag for basic EC2 bootstrap.
 * Create targets/flag for [HA Rancher Server](http://docs.rancher.com/rancher/installing-rancher/installing-server/multi-nodes/) EC2 bootstrap.
 
-Bootstrap everything using same Makefile
+0. Create inventory file `ec2` that looks like
 
-```bash
-make server host=ec2
+    ```
+    [rancherserver]
+    rancher-server ec2-54-204-214-172.compute-1.amazonaws.com
 
-# log into the UI, attempt to add a custom host, grab the extra long URL
+    [rancheragent]
+    rancher-agent01 ec2-54-235-59-210.compute-1.amazonaws.com
+    rancher-agent02 ec2-54-83-161-83.compute-1.amazonaws.com
+    rancher-agent03 ec2-54-91-78-105.compute-1.amazonaws.com
+    rancher-agent04 ec2-54-82-227-223.compute-1.amazonaws.com
+    ```
 
-make agent host=ec2
-```
+0. Call the same `Makefile` targets as we would locally, except specify the inventory file we created as `hosts=<path_to_inventory_file>`
+
+    ```bash
+    make server hosts=ec2
+
+    # log into the UI, attempt to add a custom host, grab the extra long URL
+
+    make agent hosts=ec2
+    ```
 
 ## Issues
 
