@@ -63,23 +63,23 @@ See [UI Steps](./UI-STEPS.md) for step-by-step instructions for how the Compose 
 
     ```
     [rancherserver]
-    rancher-server ec2-54-204-214-172.compute-1.amazonaws.com
+    rancher-server ansible_ssh_host=ec2-54-204-214-172.compute-1.amazonaws.com ansible_ssh_user=ec2-user
 
     [rancheragent]
-    rancher-agent01 ec2-54-235-59-210.compute-1.amazonaws.com
-    rancher-agent02 ec2-54-83-161-83.compute-1.amazonaws.com
-    rancher-agent03 ec2-54-91-78-105.compute-1.amazonaws.com
-    rancher-agent04 ec2-54-82-227-223.compute-1.amazonaws.com
+    rancher-agent01 ansible_ssh_host=ec2-54-235-59-210.compute-1.amazonaws.com ansible_ssh_user=ec2-user
+    rancher-agent02 ansible_ssh_host=ec2-54-83-161-83.compute-1.amazonaws.com ansible_ssh_user=ec2-user
+    rancher-agent03 ansible_ssh_host=ec2-54-91-78-105.compute-1.amazonaws.com ansible_ssh_user=ec2-user
+    rancher-agent04 ansible_ssh_host=ec2-54-82-227-223.compute-1.amazonaws.com ansible_ssh_user=ec2-user
     ```
 
 0. Call the same `Makefile` targets as we would locally, except specify the inventory file we created as `hosts=<path_to_inventory_file>`
 
     ```bash
-    make server hosts=ec2
+    make server hosts=ec2 ssh_key=~/.ssh/my-key-pair.pem
 
     # log into the UI, attempt to add a custom host, grab the extra long URL
 
-    make agent hosts=ec2
+    make agent hosts=ec2 ssh_key=~/.ssh/my-key-pair.pem
     ```
 
 ## Issues

@@ -1,6 +1,8 @@
-ansible_ssh_flags = --private-key=~/.vagrant.d/insecure_private_key -u vagrant -i $(hosts) --verbose
 playbooks_path = provision
+ansible_ssh_flags = --private-key=$(ssh_key) -i $(hosts) --verbose
+
 hosts := vagrant_hosts
+ssh_key := ~/.vagrant.d/insecure_private_key
 
 all: help
 
