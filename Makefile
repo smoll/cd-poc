@@ -47,3 +47,6 @@ labels:
 
 agentplay:
 	cd $(playbooks_path); ansible-playbook $(ansible_ssh_flags) rancher_agent.yml
+
+hello:
+	curl http://pyms.mycompany.tld

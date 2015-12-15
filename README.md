@@ -45,7 +45,7 @@ to bring up a Vagrant-based Rancher cluster to play around with locally.
     ```bash
     cd stacks/myapp
 
-    rancher-compose --verbose up -d # "-p myapp" isn't necessary since it creates a stack with the basedir name by default
+    rancher-compose --verbose up -d # "-p myapp" not necessary - creates a stack with this basedir name by default
     rancher-compose logs
     ```
 
